@@ -1,38 +1,28 @@
 // RN-related
-import { Link, SplashScreen, Stack, useRouter } from 'expo-router';
-import {
-  StyleSheet,
-  Pressable,
-  Image,
-  TouchableOpacity,
-  View,
-  ActivityIndicator,
-  Text,
-} from 'react-native';
+import { useRouter } from 'expo-router';
+import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
 // Custom Components
 import AnimationWrapper from '@/components/animationWrapper/AnimationWrapper';
-import { useCallback } from 'react';
 import { COLORS } from '@/constants';
 
 export default function NotFoundScreen() {
   const router = useRouter();
 
-
   return (
     <AnimationWrapper>
       <View style={styles.container}>
-        <Text style={styles.title}>Oops! This screen doesn’t exist.</Text>
+        <Text style={styles.title}>Oops! Esta tela não existe.</Text>
         <Text style={styles.subtitle}>
-          We can’t find the page you’re looking for. It might have been moved or
-          deleted.
+          Não conseguimos encontrar a tela pela qual você estava procurando.
+          Talvez ela tenha sido renomeada ou removida.
         </Text>
 
         <TouchableOpacity
           style={styles.primaryButton}
           onPress={() => router.push('/')}
         >
-          <Text style={styles.primaryButtonText}>Go to Dashboard</Text>
+          <Text style={styles.primaryButtonText}>Voltar para o Dashboard</Text>
         </TouchableOpacity>
       </View>
     </AnimationWrapper>
