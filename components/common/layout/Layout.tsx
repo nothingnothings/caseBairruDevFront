@@ -1,24 +1,12 @@
 // React-related
-import React, { useCallback } from 'react';
+import React from 'react';
 
 // RN-related
-import {
-  View,
-  StatusBar,
-  ActivityIndicator,
-  ImageBackground,
-} from 'react-native';
-import { SplashScreen } from 'expo-router';
-
-// Third-party
-import tw from 'twrnc';
+import { View, StatusBar } from 'react-native';
 
 // Custom Components
 import AnimationWrapper from '@/components/animationWrapper/AnimationWrapper';
-import { SIZES } from '@/constants';
 import { StyleSheet } from 'react-native';
-
-const image = require('@/assets/images/paper-texture.png');
 
 type LayoutProps = {
   children: React.ReactNode;

@@ -1,8 +1,6 @@
 import * as Animatable from 'react-native-animatable';
 import SafeAreaViewAndroid from '@/components/SafeAreaViewAndroid/SafeAreaViewAndroid';
 
-const image = require('@/assets/images/paper-texture.png');
-
 type AnimationWrapperProps = {
   children: React.ReactNode;
   onLayout?: any;

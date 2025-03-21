@@ -1,11 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-} from 'react-native';
+import { Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { AuthContext } from '@/context/AuthContext';
 import { COLORS, SIZES } from '@/constants';
 import Layout from '@/components/common/layout/Layout';
