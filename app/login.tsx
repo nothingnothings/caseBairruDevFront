@@ -6,8 +6,6 @@ import { useSession } from '@/context/ctx';
 
 const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
 
-console.log(apiUrl, 'THE APPURL');
-
 const LoginScreen = () => {
   return (
     <Layout>

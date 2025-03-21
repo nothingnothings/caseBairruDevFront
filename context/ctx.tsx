@@ -1,17 +1,22 @@
 import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from './useStorageState';
-import { login } from '@/utils/auth';
+import { login, register } from '@/utils/auth';
 import { LoginData } from '@/types/auth/login';
+import { RegisterData } from '@/types/auth/register';
+
+// For Navigation
 import { router } from 'expo-router';
 
 const AuthContext = createContext<{
   signIn: (params: LoginData) => void;
+  signUp: (params: RegisterData) => void;
   signOut: () => void;
   session?: string | null;
   user?: string | null;
   isLoading: boolean;
 }>({
   signIn: (params: LoginData) => null,
+  signUp: (params: RegisterData) => null,
   signOut: () => null,
   session: null,
   isLoading: false,
@@ -38,11 +43,16 @@ export function SessionProvider({ children }: PropsWithChildren) {
         signIn: async (params: LoginData) => {
           const sessionData = await login(params);
           setSession(sessionData); // string or null
-          router.replace('/index');
+          router.push('/');
+        },
+        signUp: async (params: RegisterData) => {
+          const sessionData = await register(params);
+          setSession(sessionData); // string or null
+          router.push('/');
         },
         signOut: () => {
           setSession(null);
-          router.replace('/login');
+          router.push('/login');
         },
         session,
         isLoading,

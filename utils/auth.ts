@@ -6,7 +6,9 @@ import axios from 'axios';
 
 const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
 
-export const register: RegisterFunction = async (params: RegisterData) => {
+export const register: RegisterFunction = async (
+  params: RegisterData
+): Promise<string | null> => {
   try {
     const response = await axios.post(`${apiUrl}/auth/register`, {
       name: params.name,
@@ -26,16 +28,22 @@ export const register: RegisterFunction = async (params: RegisterData) => {
   }
 };
 
-export const login: LoginFunction = async (params: LoginData) => {
+export const login: LoginFunction = async (
+  params: LoginData
+): Promise<string | null> => {
   try {
-    const response = await axios.post(`${apiUrl}/auth/login`, {
-      email: params.email,
-      password: params.password,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      `${apiUrl}/auth/login`,
+      {
+        email: params.email,
+        password: params.password,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }
-    });
+    );
 
     if (response.status !== 200) {
       throw new Error('Login falhou');

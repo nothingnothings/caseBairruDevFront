@@ -12,6 +12,7 @@ import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
 import { register, login } from '@/utils/auth';
 import { SIZES } from '@/constants';
+import { useSession } from '@/context/ctx';
 
 type FormInputGroupProps = {
   children: React.ReactNode;
@@ -26,6 +27,8 @@ function FormInputGroup({ children }: FormInputGroupProps) {
 }
 
 export default function Form({ isSignup }: FormProps) {
+  const { signIn, signUp, isLoading } = useSession();
+
   // Define state for login fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -144,8 +147,6 @@ export default function Form({ isSignup }: FormProps) {
     passwordError !== '' ||
     confirmPasswordError !== '';
 
-  console.log(isDisabledRegisterButton, 'THE CONDITIONS');
-
   const isDisabledLoginButton =
     email === '' ||
     password === '' ||
@@ -173,16 +174,16 @@ export default function Form({ isSignup }: FormProps) {
         disabled={isSignup ? isDisabledRegisterButton : isDisabledLoginButton}
         onPress={() => {
           if (isSignup) {
-            register({
+            signUp({
               name,
-              email,
-              password,
-              confirmPassword,
+              email: email,
+              password: password,
+              confirmPassword: confirmPassword,
             });
           } else {
-            login({
-              email,
-              password,
+            signIn({
+              email: email,
+              password: password,
             });
           }
         }}
