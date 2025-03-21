@@ -80,7 +80,7 @@ export default function Form({ isSignup }: FormProps) {
 
   return (
     <Animatable.View animation="fadeIn" duration={600}>
-      <Title text={isSignup ? 'Criar Conta' : 'Entrar'} />
+      <Title text={isSignup ? 'Criar Conta' : 'Log In'} />
 
       {fieldsToRender.map((field, index) => (
         <FormInputGroup key={index}>
