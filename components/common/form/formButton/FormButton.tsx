@@ -28,6 +28,7 @@ export default function FormButton({
   return (
     <TouchableOpacity
       style={[
+        { marginTop: props.disabled ? SIZES.small : SIZES.xxLarge },
         styles.baseButton,
         props.disabled ? styles.buttonDisabled : styles.buttonEnabled,
       ]}
@@ -41,12 +42,12 @@ export default function FormButton({
 
 const styles = StyleSheet.create({
   baseButton: {
-    marginTop: SIZES.xxLarge,
+    // marginTop: SIZES.xxLarge,
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 10,
     alignItems: 'center',
-    letterSpacing: 0.5
+    letterSpacing: 0.5,
   },
   buttonEnabled: {
     backgroundColor: COLORS.primary,

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 // RN-related
-import { View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 // Custom Components
@@ -34,21 +34,79 @@ export default function Form({ isSignup }: FormProps) {
   const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  // Validation State
+  const [emailError, setEmailError] = useState(''); // email error state
+  const [passwordError, setPasswordError] = useState(''); // password error state
+  const [confirmPasswordError, setConfirmPasswordError] = useState(''); // confirm password error state
+
+  // Validation Helpers
+  const validateEmail = (email: string) => {
+    // check if the email is valid:
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    const isValid = emailRegex.test(email);
+
+    if (isValid) {
+      setEmailError('');
+    } else {
+      setEmailError('Favor inserir um email válido.');
+    }
+  };
+
+  const validatePassword = (password: string) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/;
+
+    const isValid = passwordRegex.test(password);
+
+    if (isValid) {
+      setPasswordError('');
+    } else {
+      setPasswordError(
+        `A senha deve ter: 
+    - No mínimo 10 caracteres
+    - Uma letra maiúscula
+    - Um número
+    - Um símbolo.`
+      );
+    }
+  };
+
+  const validateConfirmPassword = (confirmPasswordInput: string) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{10,}$/;
+
+    const isValid =
+      passwordRegex.test(password) && password === confirmPasswordInput;
+
+    if (isValid) {
+      setConfirmPasswordError('');
+    } else {
+      setConfirmPasswordError('As senhas não coincidem.');
+    }
+  };
+
   // Define login fields
   const loginFields = [
     {
       label: 'Email',
       value: email,
-      onChangeText: (text: string) => setEmail(text),
+      onChangeText: (text: string) => {
+        validateEmail(text);
+        setEmail(text);
+      },
       secureTextEntry: false,
       multiline: false,
+      error: emailError,
     },
     {
       label: 'Senha',
       value: password,
-      onChangeText: (text: string) => setPassword(text),
+      onChangeText: (text: string) => {
+        validatePassword(text);
+        setPassword(text);
+      },
       secureTextEntry: true,
       multiline: false,
+      error: passwordError,
     },
   ];
 
@@ -60,23 +118,39 @@ export default function Form({ isSignup }: FormProps) {
       onChangeText: (text: string) => setName(text),
       secureTextEntry: false,
       multiline: false,
+      error: null,
     },
     ...loginFields,
     {
       label: 'Confirmar Senha',
       value: confirmPassword,
-      onChangeText: (text: string) => setConfirmPassword(text),
+      onChangeText: (text: string) => {
+        validateConfirmPassword(text);
+        setConfirmPassword(text);
+      },
       secureTextEntry: true,
       multiline: false,
+      error: confirmPasswordError,
     },
   ];
 
   const fieldsToRender = [...(isSignup ? registerFields : loginFields)];
 
-  const disabledRegisterConditions =
-    name === '' || password === '' || confirmPassword === '';
+  const isDisabledRegisterButton =
+    name === '' ||
+    password === '' ||
+    confirmPassword === '' ||
+    emailError !== '' ||
+    passwordError !== '' ||
+    confirmPasswordError !== '';
 
-  const disabledLoginConditions = email === '' || password === '';
+  console.log(isDisabledRegisterButton, 'THE CONDITIONS');
+
+  const isDisabledLoginButton =
+    email === '' ||
+    password === '' ||
+    emailError !== '' ||
+    passwordError !== '';
 
   return (
     <Animatable.View animation="fadeIn" duration={600}>
@@ -91,13 +165,12 @@ export default function Form({ isSignup }: FormProps) {
             value={field.value}
             multiline={field.multiline || false}
           />
+          {field.error && <Text style={styles.errorText}>{field.error}</Text>}
         </FormInputGroup>
       ))}
       <FormButton
         isSignup={isSignup}
-        disabled={
-          isSignup ? disabledRegisterConditions : disabledLoginConditions
-        }
+        disabled={isSignup ? isDisabledRegisterButton : isDisabledLoginButton}
         onPress={() => {
           if (isSignup) {
             register({
@@ -117,3 +190,13 @@ export default function Form({ isSignup }: FormProps) {
     </Animatable.View>
   );
 }
+
+const styles = StyleSheet.create({
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    marginTop: SIZES.xxxSmall,
+    flexWrap: 'wrap',
+    width: '75%',
+  },
+});

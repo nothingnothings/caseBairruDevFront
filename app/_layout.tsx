@@ -9,9 +9,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import * as NavigationBar from 'expo-navigation-bar';
 
-// Auth-related
-import { getToken, saveToken } from '../services/tokenService';
-
 // Custom Components and styles
 import { Provider } from 'react-native-paper';
 import { SessionProvider } from '@/context/ctx';
@@ -27,9 +24,6 @@ const screenOptions = {
 };
 
 const Layout: React.FC = ({}) => {
-  // Route-related
-  const currentPath = usePathname();
-
   const prepare = async () => {
     if (Platform.OS === 'android' || Platform.OS === 'ios') {
       NavigationBar.setVisibilityAsync('hidden');
