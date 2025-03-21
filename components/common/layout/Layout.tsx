@@ -25,20 +25,10 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <AnimationWrapper>
-      <ImageBackground
-        // source={image}
-        style={{
-          flex: 1,
-          width: '100%',
-          height: '100%',
-        }}
-        resizeMode="stretch"
-      >
-        <StatusBar barStyle="dark-content" />
-        <View style={tw`flex-1 justify-center items-center px-4`}>
-          {children}
-        </View>
-      </ImageBackground>
+      <StatusBar barStyle="dark-content" />
+      <View style={tw`flex-1 justify-center items-center px-4`}>
+        {children}
+      </View>
     </AnimationWrapper>
   );
 };
