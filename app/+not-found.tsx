@@ -7,59 +7,34 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  Text,
 } from 'react-native';
 
 // Custom Components
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import AnimationWrapper from '@/components/animationWrapper/AnimationWrapper';
-import useStore from '@/store/store';
 import { useCallback } from 'react';
 import { COLORS } from '@/constants';
 
 export default function NotFoundScreen() {
   const router = useRouter();
 
-  const token = useStore((state) => state.token);
-  const isLoading = useStore((state) => state.isLoading);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (!isLoading) {
-      SplashScreen.hide();
-    }
-  }, [isLoading]);
-
-  if (isLoading) {
-    return null; // Return nothing if fonts are still loading
-  }
-
-  // If loading, show an ActivityIndicator
-  if (isLoading || token === '') {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    );
-  }
 
   return (
-    <AnimationWrapper onLayout={onLayoutRootView}>
-      <ThemedView style={styles.container}>
-        <ThemedText style={styles.title}>
-          Oops! This screen doesn’t exist.
-        </ThemedText>
-        <ThemedText style={styles.subtitle}>
+    <AnimationWrapper>
+      <View style={styles.container}>
+        <Text style={styles.title}>Oops! This screen doesn’t exist.</Text>
+        <Text style={styles.subtitle}>
           We can’t find the page you’re looking for. It might have been moved or
           deleted.
-        </ThemedText>
+        </Text>
 
         <TouchableOpacity
           style={styles.primaryButton}
-          onPress={() => router.push('/home')}
+          onPress={() => router.push('/')}
         >
-          <ThemedText style={styles.primaryButtonText}>Go to Home</ThemedText>
+          <Text style={styles.primaryButtonText}>Go to Dashboard</Text>
         </TouchableOpacity>
-      </ThemedView>
+      </View>
     </AnimationWrapper>
   );
 }

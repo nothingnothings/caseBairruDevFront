@@ -10,9 +10,6 @@ import {
 } from 'react-native';
 import { SplashScreen } from 'expo-router';
 
-// Zustand-related
-import useStore from '@/store/store';
-
 // Third-party
 import tw from 'twrnc';
 
@@ -26,30 +23,8 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
-  const isLoading = useStore((state) => state.isLoading);
-  const token = useStore((state) => state.token);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (!isLoading) {
-      SplashScreen.hide();
-    }
-  }, [isLoading]);
-
-  if (isLoading) {
-    return null; // Return nothing if fonts are still loading
-  }
-
-  // If loading, show an ActivityIndicator
-  if (isLoading || token === '') {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#00ff00" />
-      </View>
-    );
-  }
-
   return (
-    <AnimationWrapper onLayout={onLayoutRootView}>
+    <AnimationWrapper>
       <ImageBackground
         // source={image}
         style={{
