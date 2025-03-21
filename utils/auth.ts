@@ -4,6 +4,9 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
+const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
+
+
 export const register: RegisterFunction = async (params: RegisterData) => {
   // Simula a resposta de uma API
   const fakeToken = 'fake-jwt-token';
@@ -17,7 +20,7 @@ export const register: RegisterFunction = async (params: RegisterData) => {
 
 export const login: LoginFunction = async (params: LoginData) => {
   try {
-    const response = await axios.post('/login', {
+    const response = await axios.post(`${apiUrl}/auth/login`, {
       email: params.email,
       password: params.password,
     });
