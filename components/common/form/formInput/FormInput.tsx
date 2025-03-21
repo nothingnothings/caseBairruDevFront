@@ -29,9 +29,9 @@ const FormInput: React.FC<FormInputProps> = ({
   multiline = false,
 }) => {
   return (
-    <View style={tw`w-full`}>
+    <View>
       <TextInput
-        style={[styles.input, error ? tw`border-red-500` : tw`border-gray-300`]}
+        style={[styles.input, error ? styles.errorBorder : tw`border-gray-300`]}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
     paddingVertical: SIZES.small,
     marginTop: SIZES.xxSmall,
     fontSize: SIZES.medium,
+  },
+  errorBorder: {
+    borderColor: '#ff0000',
+  },
+  neutralBorder: {
+    borderColor: '#E0E0E0',
   },
 });
 
