@@ -56,10 +56,6 @@ const Layout: React.FC = ({}) => {
     <AuthProvider>
       <Provider>
         <StatusBar backgroundColor="#000000" style="light" />
-        {/* {((isLoggedIn && currentPath === '/login') ||
-          (isLoggedIn && currentPath === '/register')) && (
-          <Redirect href="/home" />
-        )} */}
         <Slot screenOptions={screenOptions} />
       </Provider>
     </AuthProvider>
