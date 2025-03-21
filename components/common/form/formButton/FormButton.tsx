@@ -2,11 +2,7 @@
 import React from 'react';
 
 // RN-related
-import { TouchableOpacity, Text, View } from 'react-native';
-
-// Third-party
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { TouchableOpacity, Text } from 'react-native';
 
 // Custom Components and Styles
 import { COLORS, SIZES } from '@/constants';
