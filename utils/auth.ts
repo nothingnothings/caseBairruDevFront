@@ -6,16 +6,24 @@ import axios from 'axios';
 
 const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
 
-
 export const register: RegisterFunction = async (params: RegisterData) => {
-  // Simula a resposta de uma API
-  const fakeToken = 'fake-jwt-token';
-  const fakeUserName = params.email.split('@')[0]; // Apenas um exemplo
+  try {
+    const response = await axios.post(`${apiUrl}/auth/register`, {
+      name: params.name,
+      email: params.email,
+      password: params.password,
+      confirmPassword: params.confirmPassword,
+    });
 
-  await AsyncStorage.setItem('userToken', fakeToken);
-  await AsyncStorage.setItem('userName', fakeUserName);
+    if (response.status !== 200) {
+      throw new Error('Cadastro falhou');
+    }
 
-  Alert.alert('Login realizado com sucesso!');
+    return response.data.token;
+  } catch (error) {
+    console.error('Cadastro falhou:', error);
+    return null;
+  }
 };
 
 export const login: LoginFunction = async (params: LoginData) => {
@@ -23,6 +31,10 @@ export const login: LoginFunction = async (params: LoginData) => {
     const response = await axios.post(`${apiUrl}/auth/login`, {
       email: params.email,
       password: params.password,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
     });
 
     if (response.status !== 200) {
