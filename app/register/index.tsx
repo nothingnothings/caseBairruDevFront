@@ -19,7 +19,7 @@ import AccountTypeSelector from '@/components/accountTypeSelector/AccountTypeSel
 // Helper functions:
 import { register } from '@/utils/auth';
 
-export default function Register() {
+export default function RegisterScreen() {
   // Zustand store
   const selectedAccountType = useStore((state) => state.selectedAccountType);
   const setSelectedAccountType = useStore(

@@ -1,84 +1,44 @@
-// React-related
-import { useCallback, useState } from 'react';
+import React, { useContext } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { AuthContext } from "@/context/AuthContext";
 
-// RN-related
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  ActivityIndicator,
-} from 'react-native';
-import { SplashScreen, Stack } from 'expo-router';
-
-// Zustand-related
-import useStore from '@/store/store';
-
-// Custom Components
-import { COLORS, icons, images, SIZES } from '@/constants';
-import { Locales, ScreenHeaderBtn, Welcome } from '@/components';
-import AnimationWrapper from '@/components/animationWrapper/AnimationWrapper';
-const image = require('@/assets/images/paper-texture.png');
-
-// Keep the splash screen visible while we fetch resources
-SplashScreen.preventAutoHideAsync();
-
-const HomePage = () => {
-  const token = useStore((state) => state.token);
-  const isLoading = useStore((state) => state.isLoading);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (!isLoading) {
-      SplashScreen.hide();
-    }
-  }, [isLoading]);
-
-  if (isLoading) {
-    return null; // Return nothing if fonts are still loading
-  }
-
-  // If loading, show an ActivityIndicator
-  if (isLoading || token === '') {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    );
-  }
+const HomeScreen = () => {
+  const { user, logout } = useContext(AuthContext);
 
   return (
-    <AnimationWrapper onLayout={onLayoutRootView}>
-      <ImageBackground
-        source={image}
-        style={{
-          flex: 1,
-          width: '100%',
-          height: '100%',
-        }}
-        resizeMode="stretch"
-      >
-        <View style={styles.content}>
-          <Welcome
-            user={{
-              avatarUrl: 'https://picsum.photos/640/480',
-              counter: 123,
-            }}
-          />
-          <Locales />
-        </View>
-      </ImageBackground>
-    </AnimationWrapper>
+    <View style={styles.container}>
+      <Text style={styles.welcomeText}>Bem-vindo, {user}!</Text>
+      <TouchableOpacity style={styles.button} onPress={logout}>
+        <Text style={styles.buttonText}>Sair</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.lightWhite,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
-  content: {
-    flex: 1,
-    padding: SIZES.medium,
+  welcomeText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: "#ff4d4d",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
-export default HomePage;
+export default HomeScreen;
