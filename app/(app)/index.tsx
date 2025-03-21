@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { COLORS, SIZES } from '@/constants';
 import Layout from '@/components/common/layout/Layout';
