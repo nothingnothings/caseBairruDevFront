@@ -13,6 +13,7 @@ import Title from '../title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
+import { LoginFunction, RegisterFunction } from '@/utils/auth';
 
 type FormInputGroupProps = {
   children: React.ReactNode;

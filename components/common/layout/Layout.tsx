@@ -15,6 +15,8 @@ import tw from 'twrnc';
 
 // Custom Components
 import AnimationWrapper from '@/components/animationWrapper/AnimationWrapper';
+import { SIZES } from '@/constants';
+import { StyleSheet } from 'react-native';
 
 const image = require('@/assets/images/paper-texture.png');
 
@@ -26,11 +28,17 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <AnimationWrapper>
       <StatusBar barStyle="dark-content" />
-      <View style={tw`flex-1 justify-center items-center px-4`}>
-        {children}
-      </View>
+      <View style={styles.container}>{children}</View>
     </AnimationWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default Layout;

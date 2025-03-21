@@ -2,13 +2,13 @@
 import React from 'react';
 
 // RN-related
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View, Text, StyleSheet } from 'react-native';
 
 // Third-party
 import tw from 'twrnc';
 
 // Custom Components and Styles
-import styles from './formInput.style';
+import { COLORS, SIZES } from '@/constants';
 
 type FormInputProps = {
   value: string;
@@ -31,11 +31,7 @@ const FormInput: React.FC<FormInputProps> = ({
   return (
     <View style={tw`w-full`}>
       <TextInput
-        style={[
-          tw`p-3 border border-gray-300 rounded-md text-base`,
-          styles.input,
-          error ? tw`border-red-500` : tw`border-gray-300`,
-        ]}
+        style={[styles.input, error ? tw`border-red-500` : tw`border-gray-300`]}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
@@ -47,5 +43,18 @@ const FormInput: React.FC<FormInputProps> = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    backgroundColor: '#f7f3f9',
+    borderWidth: 2,
+    borderRadius: SIZES.small,
+    borderColor: COLORS.lightDark,
+    paddingHorizontal: SIZES.xxLarge,
+    paddingVertical: SIZES.small,
+    marginTop: SIZES.xxSmall,
+    fontSize: SIZES.medium,
+  },
+});
 
 export default FormInput;
