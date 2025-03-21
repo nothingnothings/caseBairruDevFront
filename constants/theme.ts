@@ -1,26 +1,17 @@
 const COLORS = {
   // Primary Colors
-  primary: '#D8514E', // Vibrant Vermilion (dominant color for highlights or main elements)
-  secondary: '#264653', // Deep Indigo (used for navigation bars or secondary emphasis)
-  tertiary: '#E9C46A', // Golden Ochre (used for accents like buttons or icons)
+  primary: '#007bff', // primary blue
+  secondary: '#6c757d', // secondary gray
 
   // Grayscale / Neutral Colors
-  gray: '#83829A', // Neutral gray for subtext
-  gray2: '#C1C0C8', // Light gray for borders or less important elements
+  gray: '#6c757d', // gray
+  gray2: '#adb5bd', // Lighter gray for borders or less important elements
 
   // Background Colors
-  white: '#F7F5E6', // Ivory White (main background color for a clean look)
-  lightWhite: '#FAFAFC', // Subtle off-white for secondary backgrounds
-  lightDark: '#343434',
+  white: '#ffffff', // Pure white
+  lightWhite: '#f8f9fa', // light background
+  lightDark: '#343a40', //  dark gray
   lightPink: '#f7f3f9',
-
-  // Accent Colors
-  accent1: '#FFC1CC', // Cherry Blossom Pink (for subtle highlights or decorative touches)
-  accent2: '#A8D5BA', // Soft Bamboo Green (to add a natural, calming vibe)
-
-  // Optional Highlight Colors
-  highlight: '#D72638', // Crimson Red (for CTAs or alert elements)
-  gold: '#B29700', // Muted Gold (for premium features or special emphasis)
 };
 
 const FONT = {
@@ -44,26 +35,6 @@ const SIZES = {
 };
 
 const SHADOWS = {
-  // small: {
-  //   shadowColor: '#000',
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 2,
-  //   },
-  //   shadowOpacity: 0.25,
-  //   shadowRadius: 3.84,
-  //   elevation: 2,
-  // },
-  // medium: {
-  //   shadowColor: '#000',
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 2,
-  //   },
-  //   shadowOpacity: 0.25,
-  //   shadowRadius: 5.84,
-  //   elevation: 5,
-  // },
   small: {
     boxShadow: '0px 2px 3.84px rgba(0, 0, 0, 0.25)', // Equivalent boxShadow
     elevation: 2,

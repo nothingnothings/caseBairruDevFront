@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 // Custom Components and Styles
-import { COLORS } from '@/constants';
+import { COLORS, SIZES } from '@/constants';
 import { StyleSheet } from 'react-native';
 
 type FormButtonProps = {
@@ -27,27 +27,36 @@ export default function FormButton({
 
   return (
     <TouchableOpacity
-      style={props.disabled ? styles.buttonDisabled : styles.buttonEnabled}
+      style={[
+        styles.baseButton,
+        props.disabled ? styles.buttonDisabled : styles.buttonEnabled,
+      ]}
+      disabled={props.disabled}
       onPress={onPress}
     >
-      <Text numberOfLines={1}>{isSignup ? 'Cadastrar' : 'Entrar'}</Text>
+      <Text style={styles.buttonText}>{isSignup ? 'Cadastrar' : 'Entrar'}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  buttonEnabled: {
-    backgroundColor: COLORS.primary,
+  baseButton: {
+    marginTop: SIZES.xxLarge,
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 10,
     alignItems: 'center',
+    letterSpacing: 0.5
+  },
+  buttonEnabled: {
+    backgroundColor: COLORS.primary,
   },
   buttonDisabled: {
     backgroundColor: COLORS.lightDark,
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 10,
-    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontFamily: 'DMRegular',
   },
 });

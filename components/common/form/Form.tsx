@@ -3,22 +3,16 @@ import React, { useState } from 'react';
 
 // RN-related
 import { View } from 'react-native';
-import { useRouter } from 'expo-router';
 import * as Animatable from 'react-native-animatable';
 
 // Third-party
 import tw from 'twrnc';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
 
 // Custom Components
 import Title from '../title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
-import { LoginFunction, RegisterFunction } from '@/utils/auth';
 
 type FormInputGroupProps = {
   children: React.ReactNode;
@@ -98,7 +92,13 @@ export default function Form({ isSignup }: FormProps) {
       <FormButton
         isSignup={isSignup}
         disabled={name === '' || password === '' || confirmPassword === ''}
-        onPress={() => {}}
+        onPress={() => {
+          if (isSignup) {
+            register(name, password, confirmPassword);
+          } else {
+            login(name, password);
+          }
+        }}
       />
     </Animatable.View>
   );
