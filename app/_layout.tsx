@@ -41,33 +41,12 @@ const Layout: React.FC = ({}) => {
         DMRegular: require('../assets/fonts/DMSans-Regular.ttf'),
         tabibito: require('../assets/fonts/tabibito.ttf'),
       });
-
-      await fetchToken();
     } catch (error) {
       console.warn(error);
     } finally {
-      setIsLoading(false);
       SplashScreen.hide();
     }
   };
-
-  const fetchToken = async () => {
-    try {
-      const result = await getToken('authToken');
-
-      if (result && result.token && result.user) {
-        // Check if result is not undefined and has a token and a user.
-        setToken(result.token);
-        setUser(result.user);
-        saveToken('authData', JSON.stringify(result.token));
-        setIsLoggedIn(true);
-      }
-    } catch (errorData: any) {
-      setError(errorData.message);
-    }
-  };
-
-  const hideDialog = () => resetError();
 
   useEffect(() => {
     prepare();
