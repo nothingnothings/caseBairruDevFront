@@ -53,6 +53,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     autoLogout();
   };
 
+  const updateUser = (newName: string) => {
+    setUser(newName); // Atualiza o nome do usuário no estado
+  };
+
   const logout = async () => {
     setToken(null);
     setUser(null);

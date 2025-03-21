@@ -1,9 +1,9 @@
 // React-related
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 // RN-related
 import { Platform } from 'react-native';
-import { Redirect, Slot, useFocusEffect, usePathname } from 'expo-router';
+import { Slot, usePathname } from 'expo-router';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
