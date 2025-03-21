@@ -9,19 +9,12 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import * as NavigationBar from 'expo-navigation-bar';
 
-// Zustand-related
-import useStore from '@/store/store';
-
-// Query-related
-import { QueryProvider } from '@/providers/QueryProvider';
-
 // Auth-related
 import { getToken, saveToken } from '../services/tokenService';
 
 // Custom Components and styles
-import { BottomNavBar } from '@/components';
-import CustomAlert from '@/components/common/alert/Alert';
 import { Provider } from 'react-native-paper';
+import { AuthProvider } from '@/context/AuthContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,21 +27,6 @@ const screenOptions = {
 };
 
 const Layout: React.FC = ({}) => {
-  // Zustand Store
-  const setIsLoading = useStore((state) => state.setIsLoading);
-
-  const setToken = useStore((state) => state.setToken);
-
-  const user = useStore((state) => state.user);
-  const setUser = useStore((state) => state.setUser);
-
-  const isLoggedIn = useStore((state) => state.isLoggedIn);
-  const setIsLoggedIn = useStore((state) => state.setIsLoggedIn);
-
-  const error = useStore((state) => state.error);
-  const setError = useStore((state) => state.setError);
-  const resetError = useStore((state) => state.resetError);
-
   // Route-related
   const currentPath = usePathname();
 
@@ -96,30 +74,16 @@ const Layout: React.FC = ({}) => {
   }, []);
 
   return (
-    <Provider>
-      <QueryProvider>
+    <AuthProvider>
+      <Provider>
         <StatusBar backgroundColor="#000000" style="light" />
-        {((isLoggedIn && currentPath === '/login') ||
+        {/* {((isLoggedIn && currentPath === '/login') ||
           (isLoggedIn && currentPath === '/register')) && (
           <Redirect href="/home" />
-        )}
+        )} */}
         <Slot screenOptions={screenOptions} />
-        {/* General-Purpose Error Alert */}
-        <CustomAlert
-          visible={error !== null}
-          onDismiss={hideDialog}
-          title="Error"
-          type="error"
-          message={error as string}
-        />
-        {/* // TODO - Add CustomAlert for success messages. */}
-        {/* Navigation Bar */}
-        <BottomNavBar
-          isLoggedIn={isLoggedIn}
-          isTabibito={user?.is_tabibito}
-        />
-      </QueryProvider>
-    </Provider>
+      </Provider>
+    </AuthProvider>
   );
 };
 

@@ -67,30 +67,6 @@ export default function Form({
   // Register fields
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // Tabibito-Specific
-  const [tabibitoName, setTabibitoName] = useState('');
-
-  // Company-Specific
-  const [companyName, setCompanyName] = useState('');
-  const [companyIndustry, setCompanyIndustry] = useState('');
-
-  // Locale-Specific fields (to be expanded as needed)
-  const [localeName, setLocaleName] = useState('');
-  const [localeType, setLocaleType] = useState('');
-  const [localeAddress, setLocaleAddress] = useState('');
-  const [localeZipcode, setLocaleZipcode] = useState('');
-  const [localeCountry, setLocaleCountry] = useState('');
-  const [localeState, setLocaleState] = useState('');
-  const [localeCity, setLocaleCity] = useState('');
-  const [localePhone, setLocalePhone] = useState('');
-  const [localeImageUrl1, setLocaleImageUrl1] = useState('');
-  const [localeImageUrl2, setLocaleImageUrl2] = useState('');
-  const [localeWebsiteUrl, setLocaleWebsiteUrl] = useState('');
-  const [localeDescription, setLocaleDescription] = useState('');
-
-  // Page state (page 1 or page 2)
-  const [currentPage, setCurrentPage] = useState(1);
-
   const arrowContainer = {
     flexDirection: 'row',
     justifyContent: 'center',
