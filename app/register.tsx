@@ -18,9 +18,7 @@ import { register } from '@/utils/auth';
 export default function RegisterScreen() {
   return (
     <Layout>
-      <View>
-        <Text>Register</Text>
-      </View>
+      <Form isSignup={true} />
     </Layout>
   );
 }

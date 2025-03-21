@@ -8,6 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
+import FormInput from '@/components/common/form/formInput/FormInput';
 
 const LoginScreen = () => {
   const { login } = useContext(AuthContext);
