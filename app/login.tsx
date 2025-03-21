@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 import FormInput from '@/components/common/form/formInput/FormInput';
+import Layout from '@/components/common/layout/Layout';
+import Form from '@/components/common/form/Form';
 
 const LoginScreen = () => {
   const { login } = useContext(AuthContext);
@@ -38,27 +40,9 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
-    </View>
+    <Layout>
+      <Form isSignup={false} />
+    </Layout>
   );
 };
 

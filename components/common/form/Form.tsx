@@ -5,15 +5,13 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-// Third-party
-import tw from 'twrnc';
-
 // Custom Components
 import Title from '../title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
 import { LoginFunction, RegisterFunction } from '@/utils/auth';
+import { SIZES } from '@/constants';
 
 type FormInputGroupProps = {
   children: React.ReactNode;
@@ -24,7 +22,7 @@ type FormProps = {
 };
 
 function FormInputGroup({ children }: FormInputGroupProps) {
-  return <View style={tw`my-3`}>{children}</View>;
+  return <View style={{ marginVertical: SIZES.xxSmall }}>{children}</View>;
 }
 
 export default function Form({ isSignup }: FormProps) {
@@ -75,6 +73,11 @@ export default function Form({ isSignup }: FormProps) {
 
   const fieldsToRender = [...(isSignup ? registerFields : loginFields)];
 
+  const disabledRegisterConditions =
+    name === '' || password === '' || confirmPassword === '';
+
+  const disabledLoginConditions = email === '' || password === '';
+
   return (
     <Animatable.View animation="fadeIn" duration={600}>
       <Title text={isSignup ? 'Criar Conta' : 'Entrar'} />
@@ -92,10 +95,12 @@ export default function Form({ isSignup }: FormProps) {
       ))}
       <FormButton
         isSignup={isSignup}
-        disabled={name === '' || password === '' || confirmPassword === ''}
+        disabled={
+          isSignup ? disabledRegisterConditions : disabledLoginConditions
+        }
         onPress={() => {
           if (isSignup) {
-            register(name, password, confirmPassword);
+            register(name, email, password, confirmPassword);
           } else {
             login(name, password);
           }
