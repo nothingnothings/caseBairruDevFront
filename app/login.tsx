@@ -7,13 +7,15 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
-import { AuthContext } from '../context/AuthContext';
+// import { AuthContext } from '../context/ctx';
 import FormInput from '@/components/common/form/formInput/FormInput';
 import Layout from '@/components/common/layout/Layout';
 import Form from '@/components/common/form/Form';
+import { useSession } from '@/context/ctx';
 
 const LoginScreen = () => {
-  const { login } = useContext(AuthContext);
+  // const { login } = useContext(AuthContext);
+  const { signIn } = useSession();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,7 +38,7 @@ const LoginScreen = () => {
       return;
     }
 
-    login(email, password);
+    // login(email, password);
   };
 
   return (

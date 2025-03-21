@@ -14,7 +14,7 @@ import { getToken, saveToken } from '../services/tokenService';
 
 // Custom Components and styles
 import { Provider } from 'react-native-paper';
-import { AuthProvider } from '@/context/AuthContext';
+import { SessionProvider } from '@/context/ctx';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -53,12 +53,12 @@ const Layout: React.FC = ({}) => {
   }, []);
 
   return (
-    <AuthProvider>
+    <SessionProvider>
       <Provider>
         <StatusBar backgroundColor="#000000" style="light" />
         <Slot screenOptions={screenOptions} />
       </Provider>
-    </AuthProvider>
+    </SessionProvider>
   );
 };
 

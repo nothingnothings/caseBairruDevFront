@@ -10,7 +10,7 @@ import Title from '../title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
-import { LoginFunction, RegisterFunction } from '@/utils/auth';
+import { register, login } from '@/utils/auth';
 import { SIZES } from '@/constants';
 
 type FormInputGroupProps = {
@@ -100,9 +100,17 @@ export default function Form({ isSignup }: FormProps) {
         }
         onPress={() => {
           if (isSignup) {
-            register(name, email, password, confirmPassword);
+            register({
+              name,
+              email,
+              password,
+              confirmPassword,
+            });
           } else {
-            login(name, password);
+            login({
+              email,
+              password,
+            });
           }
         }}
       />

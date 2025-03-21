@@ -3,5 +3,6 @@ export interface RegisterData {
   name: string;
   password: string;
   confirmPassword: string;
-  deviceName: string | null;
 }
+
+export type RegisterFunction = (params: RegisterData) => Promise<void>;

@@ -1,21 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import { AuthContext } from '@/context/AuthContext';
 import { COLORS, SIZES } from '@/constants';
 import Layout from '@/components/common/layout/Layout';
+import { useSession } from '@/context/ctx';
 
 const HomeScreen = () => {
-  const { user, logout, updateUser } = useContext(AuthContext); // Assumindo que existe a função updateUser no contexto
   const [newName, setNewName] = useState('');
+
+  const { signOut, user } = useSession();
 
   const handleChangeName = () => {
     // Função para atualizar o nome do usuário
-    updateUser(newName);
+    // updateUser(newName);
   };
 
   return (
     <Layout>
-      <Text style={styles.welcomeText}>Bem-vindo, {user}!</Text>
+      <Text style={styles.welcomeText}>Bem-vindo, {user || ''}!</Text>
 
       {/* Field to change user's name */}
       <TextInput
@@ -38,7 +39,7 @@ const HomeScreen = () => {
       </TouchableOpacity>
 
       {/* Leave Button (logs out) */}
-      <TouchableOpacity style={styles.leaveButton} onPress={logout}>
+      <TouchableOpacity style={styles.leaveButton} onPress={signOut}>
         <Text style={styles.leaveButtonText}>Sair</Text>
       </TouchableOpacity>
     </Layout>
