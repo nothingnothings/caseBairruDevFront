@@ -5,4 +5,8 @@ export interface RegisterData {
   confirmPassword: string;
 }
 
-export type RegisterFunction = (params: RegisterData) => Promise<string | null>;
+export type RegisterFunction = (params: RegisterData) => Promise<{
+  sessionData: string | null;
+  userName: string | null;
+  userId: string | null;
+}>;

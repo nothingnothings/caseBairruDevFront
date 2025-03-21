@@ -7,16 +7,11 @@ import { useSession } from '@/context/ctx';
 const HomeScreen = () => {
   const [newName, setNewName] = useState('');
 
-  const { signOut, user } = useSession();
-
-  const handleChangeName = () => {
-    // Função para atualizar o nome do usuário
-    // updateUser(newName);
-  };
+  const { userName, userId, signOut, changeName } = useSession();
 
   return (
     <Layout>
-      <Text style={styles.welcomeText}>Bem-vindo, {user || ''}!</Text>
+      <Text style={styles.welcomeText}>Bem-vindo, {userName}!</Text>
 
       {/* Field to change user's name */}
       <TextInput
@@ -33,7 +28,7 @@ const HomeScreen = () => {
           newName === '' ? styles.buttonDisabled : styles.buttonEnabled,
         ]}
         disabled={newName === ''}
-        onPress={handleChangeName}
+        onPress={() => changeName({ newName, userId: userId || '' })}
       >
         <Text style={styles.buttonText}>Salvar Alteração</Text>
       </TouchableOpacity>

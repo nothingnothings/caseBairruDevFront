@@ -3,4 +3,8 @@ export interface LoginData {
   password: string;
 }
 
-export type LoginFunction = (params: LoginData) => Promise<string | null>;
+export type LoginFunction = (params: LoginData) => Promise<{
+  sessionData: string | null;
+  userName: string | null;
+  userId: string | null;
+}>;
