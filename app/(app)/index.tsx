@@ -37,7 +37,11 @@ const HomeScreen = () => {
         disabled={newName === ''}
         onPress={() => changeName({ newName, userId: userId || '' })}
       >
-        <Text style={styles.buttonText}>Salvar Alteração</Text>
+        <Text
+          style={newName === '' ? styles.buttonDisabledText : styles.buttonText}
+        >
+          Salvar Alteração
+        </Text>
       </TouchableOpacity>
 
       {/* Leave Button (logs out) */}
@@ -79,7 +83,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   buttonDisabled: {
-    backgroundColor: COLORS.lightDark,
+    backgroundColor: COLORS.lightGray,
+  },
+  buttonDisabledText: {
+    color: COLORS.darkGray,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   buttonEnabled: {
     backgroundColor: COLORS.primary,
