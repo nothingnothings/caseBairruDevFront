@@ -1,5 +1,5 @@
 import * as Animatable from 'react-native-animatable';
-import SafeAreaViewAndroid from '@/components/SafeAreaViewAndroid/SafeAreaViewAndroid';
+import SafeAreaViewAndroid from '@/components/common/safeAreaViewAndroid/SafeAreaViewAndroid';
 
 type AnimationWrapperProps = {
   children: React.ReactNode;
