@@ -38,7 +38,6 @@ export default function FormButton({
 
 const styles = StyleSheet.create({
   baseButton: {
-    // marginTop: SIZES.xxLarge,
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 10,

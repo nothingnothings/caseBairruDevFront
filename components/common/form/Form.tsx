@@ -10,7 +10,6 @@ import Title from '../title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
-import { register, login } from '@/utils/auth';
 import { SIZES } from '@/constants';
 import { useSession } from '@/context/ctx';
 
@@ -156,7 +155,6 @@ export default function Form({ isSignup }: FormProps) {
   return (
     <Animatable.View animation="fadeIn" duration={600}>
       <Title text={isSignup ? 'Criar Conta' : 'Log In'} />
-
       {fieldsToRender.map((field, index) => (
         <FormInputGroup key={index}>
           <FormLabel text={field.label} />
@@ -166,7 +164,11 @@ export default function Form({ isSignup }: FormProps) {
             value={field.value}
             multiline={field.multiline || false}
           />
-          {field.error && <Text style={styles.errorText}>{field.error}</Text>}
+          <View>
+            {field.error ? (
+              <Text style={styles.errorText}>{field.error}</Text>
+            ) : null}
+          </View>
         </FormInputGroup>
       ))}
       <FormButton
