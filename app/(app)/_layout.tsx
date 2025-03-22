@@ -24,16 +24,14 @@ export default function AppLayout() {
   }
 
   return (
-    <>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          statusBarHidden: true,
-          contentStyle: {
-            backgroundColor: '#fff',
-          },
-        }}
-      />
-    </>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        statusBarHidden: true,
+        contentStyle: {
+          backgroundColor: '#fff',
+        },
+      }}
+    />
   );
 }

@@ -113,7 +113,8 @@ export function SessionProvider({ children }: PropsWithChildren) {
     // Save user data persistently:
     await setStorageItemAsync('session', results.sessionData);
     await setStorageItemAsync('userName', results.userName);
-    await setStorageItemAsync('userId', results.userId);
+
+    router.push('/');
   };
 
   //  Main function
@@ -128,8 +129,6 @@ export function SessionProvider({ children }: PropsWithChildren) {
 
           // Save user data in persistent storage
           await setStorageData(results);
-
-          router.push('/');
         },
 
         signUp: async (params: RegisterData) => {
@@ -140,8 +139,6 @@ export function SessionProvider({ children }: PropsWithChildren) {
 
           // Save user data persistently:
           await setStorageData(results);
-
-          router.push('/');
         },
         changeName: async (params: UpdateUserData) => {
           const user = await updateUserName(params, session);
@@ -151,10 +148,12 @@ export function SessionProvider({ children }: PropsWithChildren) {
             setUserName(user?.name);
 
             // Save user name in persistent storage
-            await setStorageItemAsync('userName', user.name);
+            await setStorageItemAsync('userName', user.name).then(() => {
+              router.push('/');
+            });
+          } else {
+            router.push('/');
           }
-
-          router.push('/');
         },
         signOut,
         userId,

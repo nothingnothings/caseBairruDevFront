@@ -1,5 +1,5 @@
 // React-related
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // RN-related
 import { Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
@@ -10,15 +10,31 @@ import { COLORS, SIZES } from '@/constants';
 
 // Context
 import { useSession } from '@/context/ctx';
+import { fetchUserName } from '@/utils/auth';
 
 const HomeScreen = () => {
   const [newName, setNewName] = useState('');
+  const [currentName, setCurrentName] = useState('');
 
-  const { userName, userId, signOut, changeName } = useSession();
+  const { userName, session, userId, signOut, changeName } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      fetchUserName(session, userId).then((name) => {
+        if (name) {
+          setCurrentName(name);
+        } else {
+          if (userName) {
+            setCurrentName(userName);
+          }
+        }
+      });
+    }
+  }, []);
 
   return (
     <Layout>
-      <Text style={styles.welcomeText}>Bem-vindo, {userName}!</Text>
+      <Text style={styles.welcomeText}>Bem-vindo, {currentName}!</Text>
 
       {/* Field to change user's name */}
       <TextInput

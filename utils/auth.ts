@@ -16,8 +16,6 @@ export const validateSession = async (
       headers: { Authorization: `Bearer ${session}` },
     });
 
-    console.log(response, 'THE RESPONSE');
-
     return response.data.isValid;
   } catch (error) {
     console.error('Session validation failed:', error);
@@ -88,6 +86,26 @@ export const login: LoginFunction = async (
       userName: '',
       userId: null,
     };
+  }
+};
+
+export const fetchUserName = async (
+  session: string | null,
+  userId: string | null
+): Promise<string | null> => {
+  try {
+    const response = await axios.get(`${apiUrl}/auth/user/${userId}`, {
+      headers: { Authorization: `Bearer ${session}` },
+    });
+
+    if (response.status !== 200) {
+      throw new Error('Não foi possível obter o nome do usuário.');
+    }
+
+    return response.data.name;
+  } catch (error) {
+    console.error('Não foi possível obter o nome do usuário:', error);
+    return null;
   }
 };
 

@@ -20,6 +20,8 @@ function useAsyncState<T>(
 }
 
 export async function setStorageItemAsync(key: string, value: string | null) {
+  console.log(`Setting item with key: ${key}, value: ${value}`);
+
   if (Platform.OS === 'web') {
     try {
       if (value === null) {
