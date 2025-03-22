@@ -3,9 +3,10 @@ import {
   createContext,
   type PropsWithChildren,
   useState,
+  useEffect,
 } from 'react';
 import { setStorageItemAsync, useStorageState } from './useStorageState';
-import { login, register, updateUserName } from '@/utils/auth';
+import { login, register, updateUserName, validateSession } from '@/utils/auth';
 import { LoginData } from '@/types/auth/login';
 import { RegisterData } from '@/types/auth/register';
 
@@ -53,6 +54,21 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState('session');
   const [[, userName], setUserName] = useStorageState('userName');
   const [[, userId], setUserId] = useStorageState('userId');
+
+  useEffect(() => {
+    if (!isLoading && session) {
+      validateSession(session).then((isValid) => {
+        console.log(session, "THE SESSION");
+        if (!isValid) {
+          console.log(isValid, "IS VALID");
+          setSession(null);
+          setUserName(null);
+          setUserId(null);
+          router.push('/login');
+        }
+      });
+    }
+  }, [isLoading, session]); // Add `isLoading` to dependencies
 
   return (
     <AuthContext.Provider

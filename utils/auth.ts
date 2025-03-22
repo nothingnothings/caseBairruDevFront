@@ -1,11 +1,29 @@
 import { RegisterData, RegisterFunction } from '@/types/auth/register';
 import { LoginData, LoginFunction } from '@/types/auth/login';
 import { Alert } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { UpdateUserData, UserData } from '@/types/auth/user';
 
 const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
+
+export const validateSession = async (
+  session: string | null
+): Promise<boolean> => {
+  if (!session) return false; // No session found, treat as invalid
+
+  try {
+    const response = await axios.get(`${apiUrl}/auth/validate`, {
+      headers: { Authorization: `Bearer ${session}` },
+    });
+
+    console.log(response, 'THE RESPONSE');
+
+    return response.data.isValid;
+  } catch (error) {
+    console.error('Session validation failed:', error);
+    return false; // Session is invalid
+  }
+};
 
 export const register: RegisterFunction = async (
   params: RegisterData
@@ -86,7 +104,7 @@ export const updateUserName = async (
       throw new Error('Alteração de nome falhou.');
     }
 
-    return response.data
+    return response.data;
   } catch (error) {
     console.error('Alteração de nome falhou:', error);
     return null;
