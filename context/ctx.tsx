@@ -63,47 +63,83 @@ export function SessionProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     if (!isLoading && session) {
-      validateSession(session).then((isValid) => {
-        console.log(session, 'THE SESSION');
-        if (!isValid) {
-          console.log(isValid, 'IS VALID');
-          setSession(null);
-          setUserName(null);
-          setUserId(null);
-          router.push('/login');
-        }
-      });
-    }
-  }, [isLoading, session]); // Add `isLoading` to dependencies
+      // Check if session is valid, initially
+      checkSessionValidity();
 
+      // Check validity every 61 seconds; tokens from backend expires every 5 minutes.
+      const interval = setInterval(checkSessionValidity, 1000 * 61);
+
+      return () => clearInterval(interval);
+    }
+  }, [isLoading, session]);
+
+  //  Helper functions
+  const checkSessionValidity = async () => {
+    const isValid = await validateSession(session);
+    // If session is invalid, sign user out
+    if (!isValid) {
+      signOut();
+    }
+  };
+
+  const signOut = async () => {
+    setSession(null);
+    setUserName(null);
+    setUserId(null);
+
+    // Clear stored data
+    await setStorageItemAsync('session', null);
+    await setStorageItemAsync('userName', null);
+    await setStorageItemAsync('userId', null);
+
+    router.push('/login');
+  };
+
+  const setData = (results: {
+    sessionData: string | null;
+    userName: string | null;
+    userId: string | null;
+  }) => {
+    setSession(results.sessionData);
+    setUserName(results.userName);
+    setUserId(results.userId);
+  };
+
+  const setStorageData = async (results: {
+    sessionData: string | null;
+    userName: string | null;
+    userId: string | null;
+  }) => {
+    // Save user data persistently:
+    await setStorageItemAsync('session', results.sessionData);
+    await setStorageItemAsync('userName', results.userName);
+    await setStorageItemAsync('userId', results.userId);
+  };
+
+  //  Main function
   return (
     <AuthContext.Provider
       value={{
         signIn: async (params: LoginData) => {
           const results = await login(params);
 
-          setSession(results.sessionData); // string or null
-          setUserName(results.userName);
-          setUserId(results.userId);
+          // Save user data in state
+          setData(results);
 
-          // Save user data persistently:
-          await setStorageItemAsync('session', results.sessionData);
-          await setStorageItemAsync('userName', results.userName);
-          await setStorageItemAsync('userId', results.userId);
+          // Save user data in persistent storage
+          await setStorageData(results);
 
           router.push('/');
         },
+
         signUp: async (params: RegisterData) => {
           const results = await register(params);
 
-          setSession(results.sessionData); // string or null
-          setUserName(results.userName);
-          setUserId(results.userId);
+          // Save user data in state
+          setData(results);
 
           // Save user data persistently:
-          await setStorageItemAsync('session', results.sessionData);
-          await setStorageItemAsync('userName', results.userName);
-          await setStorageItemAsync('userId', results.userId);
+          await setStorageData(results);
 
           router.push('/');
         },
@@ -111,26 +147,16 @@ export function SessionProvider({ children }: PropsWithChildren) {
           const user = await updateUserName(params, session);
 
           if (user) {
+            // Update user name in state
             setUserName(user?.name);
 
-            // Update stored username
+            // Save user name in persistent storage
             await setStorageItemAsync('userName', user.name);
           }
 
           router.push('/');
         },
-        signOut: async () => {
-          setSession(null);
-          setUserName(null);
-          setUserId(null);
-
-          // Clear stored data
-          await setStorageItemAsync('session', null);
-          await setStorageItemAsync('userName', null);
-          await setStorageItemAsync('userId', null);
-
-          router.push('/login');
-        },
+        signOut,
         userId,
         userName,
         setUserName,
