@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 // RN-related
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 // Custom Components and styles
@@ -10,10 +10,12 @@ import Title from '../common/title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
-import { SIZES } from '@/constants';
+import { COLORS, SIZES } from '@/constants';
 
 // Context
 import { useSession } from '@/context/ctx';
+import { Link, router } from 'expo-router';
+import LinkButton from './linkButton/LinkButton';
 
 type FormInputGroupProps = {
   children: React.ReactNode;
@@ -193,6 +195,7 @@ export default function Form({ isSignup }: FormProps) {
         }}
       />
       {/* Link to Register/Login Page */}
+      <LinkButton isSignup={isSignup} />
     </Animatable.View>
   );
 }
@@ -204,5 +207,24 @@ const styles = StyleSheet.create({
     marginTop: SIZES.xxxSmall,
     flexWrap: 'wrap',
     width: '75%',
+  },
+  primaryStyling: {
+    borderColor: COLORS.primary,
+    padding: 10,
+    paddingLeft: 8,
+  },
+  captionContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  primaryText: {
+    textAlign: 'center',
+    color: COLORS.primary,
+    fontFamily: 'DMRegular',
+    fontWeight: 'bold',
+    marginTop: 1,
   },
 });
