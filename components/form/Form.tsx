@@ -41,11 +41,21 @@ export default function Form({ isSignup }: FormProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   // Validation State
+  const [nameError, setNameError] = useState(''); // name error state
   const [emailError, setEmailError] = useState(''); // email error state
   const [passwordError, setPasswordError] = useState(''); // password error state
   const [confirmPasswordError, setConfirmPasswordError] = useState(''); // confirm password error state
 
   // Validation Helpers
+
+  const validateName = (name: string) => {
+    if (name === '') {
+      setNameError('Insira um nome.');
+    } else {
+      setNameError('');
+    }
+  };
+
   const validateEmail = (email: string) => {
     // check if the email is valid:
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -123,10 +133,13 @@ export default function Form({ isSignup }: FormProps) {
     {
       label: 'Nome',
       value: name,
-      onChangeText: (text: string) => setName(text),
+      onChangeText: (text: string) => {
+        validateName(text);
+        setName(text);
+      },
       secureTextEntry: false,
       multiline: false,
-      error: null,
+      error: nameError,
     },
     ...loginFields,
     {
