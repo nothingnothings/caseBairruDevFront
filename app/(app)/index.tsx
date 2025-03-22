@@ -25,7 +25,7 @@ const HomeScreen = () => {
         style={styles.input}
         value={newName || ''}
         onChangeText={setNewName}
-        placeholder="Alterar nome"
+        placeholder="Escreva seu novo nome"
       />
 
       {/* Button to update user's name */}
