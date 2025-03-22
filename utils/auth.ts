@@ -92,13 +92,22 @@ export const login: LoginFunction = async (
 };
 
 export const updateUserName = async (
-  params: UpdateUserData
+  params: UpdateUserData,
+  session: string | null
 ): Promise<UserData | null> => {
   try {
-    const response = await axios.put(`${apiUrl}/auth/alterName`, {
-      newName: params.newName,
-      userId: params.userId,
-    });
+    const response = await axios.put(
+      `${apiUrl}/auth/alterName`,
+      {
+        newName: params.newName,
+        userId: params.userId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${session}`,
+        },
+      }
+    );
 
     if (response.status !== 200) {
       throw new Error('Alteração de nome falhou.');

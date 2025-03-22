@@ -108,7 +108,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
           router.push('/');
         },
         changeName: async (params: UpdateUserData) => {
-          const user = await updateUserName(params);
+          const user = await updateUserName(params, session);
 
           if (user) {
             setUserName(user?.name);
