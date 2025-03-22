@@ -33,7 +33,6 @@ const Layout: React.FC = ({}) => {
         DMBold: require('../assets/fonts/DMSans-Bold.ttf'),
         DMMedium: require('../assets/fonts/DMSans-Medium.ttf'),
         DMRegular: require('../assets/fonts/DMSans-Regular.ttf'),
-        tabibito: require('../assets/fonts/tabibito.ttf'),
       });
     } catch (error) {
       console.warn(error);

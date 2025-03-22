@@ -3,7 +3,7 @@ import React from 'react';
 
 // Custom Components and styles
 import Form from '@/components/common/form/Form';
-import Layout from '@/components/common/layout/Layout';
+import Layout from '@/components/common/wrappers/layout/Layout';
 
 export default function RegisterScreen() {
   return (

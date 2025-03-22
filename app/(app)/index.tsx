@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { COLORS, SIZES } from '@/constants';
-import Layout from '@/components/common/layout/Layout';
+import Layout from '@/components/common/wrappers/layout/Layout';
 import { useSession } from '@/context/ctx';
 
 const HomeScreen = () => {

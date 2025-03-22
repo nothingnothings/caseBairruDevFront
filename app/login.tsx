@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
-import Layout from '@/components/common/layout/Layout';
+import Layout from '@/components/common/wrappers/layout/Layout';
 import Form from '@/components/common/form/Form';
 import { useSession } from '@/context/ctx';
 

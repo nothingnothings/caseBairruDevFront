@@ -2,7 +2,7 @@ import { Redirect, Stack } from 'expo-router';
 
 import { useSession } from '../../context/ctx';
 import { ActivityIndicator } from 'react-native-paper';
-import Layout from '@/components/common/layout/Layout';
+import Layout from '@/components/common/wrappers/layout/Layout';
 import { StatusBar } from 'expo-status-bar';
 
 export default function AppLayout() {
