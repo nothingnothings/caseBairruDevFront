@@ -24,7 +24,7 @@ export default function FormButton({
   return (
     <TouchableOpacity
       style={[
-        { marginTop: props.disabled ? SIZES.small : SIZES.xxLarge },
+        { marginTop: props.disabled ? SIZES.large : SIZES.xxLarge },
         styles.baseButton,
         props.disabled ? styles.buttonDisabled : styles.buttonEnabled,
       ]}

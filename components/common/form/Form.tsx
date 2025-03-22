@@ -188,6 +188,7 @@ export default function Form({ isSignup }: FormProps) {
           }
         }}
       />
+      {/* Link to Register/Login Page */}
     </Animatable.View>
   );
 }

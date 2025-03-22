@@ -4,7 +4,7 @@ import {
   type PropsWithChildren,
   useState,
 } from 'react';
-import { useStorageState } from './useStorageState';
+import { setStorageItemAsync, useStorageState } from './useStorageState';
 import { login, register, updateUserName } from '@/utils/auth';
 import { LoginData } from '@/types/auth/login';
 import { RegisterData } from '@/types/auth/register';
@@ -51,9 +51,8 @@ export function useSession() {
 
 export function SessionProvider({ children }: PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState('session');
-
-  const [userName, setUserName] = useState<string | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
+  const [[, userName], setUserName] = useStorageState('userName');
+  const [[, userId], setUserId] = useStorageState('userId');
 
   return (
     <AuthContext.Provider
@@ -65,6 +64,11 @@ export function SessionProvider({ children }: PropsWithChildren) {
           setUserName(results.userName);
           setUserId(results.userId);
 
+          // Save user data persistently:
+          await setStorageItemAsync('session', results.sessionData);
+          await setStorageItemAsync('userName', results.userName);
+          await setStorageItemAsync('userId', results.userId);
+
           router.push('/');
         },
         signUp: async (params: RegisterData) => {
@@ -74,6 +78,11 @@ export function SessionProvider({ children }: PropsWithChildren) {
           setUserName(results.userName);
           setUserId(results.userId);
 
+          // Save user data persistently:
+          await setStorageItemAsync('session', results.sessionData);
+          await setStorageItemAsync('userName', results.userName);
+          await setStorageItemAsync('userId', results.userId);
+
           router.push('/');
         },
         changeName: async (params: UpdateUserData) => {
@@ -81,12 +90,23 @@ export function SessionProvider({ children }: PropsWithChildren) {
 
           if (user) {
             setUserName(user?.name);
+
+            // Update stored username
+            await setStorageItemAsync('userName', user.name);
           }
 
           router.push('/');
         },
-        signOut: () => {
+        signOut: async () => {
           setSession(null);
+          setUserName(null);
+          setUserId(null);
+
+          // Clear stored data
+          await setStorageItemAsync('session', null);
+          await setStorageItemAsync('userName', null);
+          await setStorageItemAsync('userId', null);
+
           router.push('/login');
         },
         userId,
