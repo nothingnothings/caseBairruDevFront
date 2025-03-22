@@ -1,4 +1,7 @@
+// RN-related
 import * as Animatable from 'react-native-animatable';
+
+// Custom Components
 import SafeAreaViewAndroid from '@/components/common/wrappers/safeAreaViewAndroid/SafeAreaViewAndroid';
 
 type AnimationWrapperProps = {

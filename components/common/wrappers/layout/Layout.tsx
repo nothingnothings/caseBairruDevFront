@@ -2,11 +2,10 @@
 import React from 'react';
 
 // RN-related
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, StyleSheet } from 'react-native';
 
 // Custom Components
 import AnimationWrapper from '@/components/common/wrappers/animationWrapper/AnimationWrapper';
-import { StyleSheet } from 'react-native';
 
 type LayoutProps = {
   children: React.ReactNode;

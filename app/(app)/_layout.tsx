@@ -1,9 +1,12 @@
+// RN-related
 import { Redirect, Stack } from 'expo-router';
-
-import { useSession } from '../../context/ctx';
 import { ActivityIndicator } from 'react-native-paper';
+
+// Custom Components
 import Layout from '@/components/common/wrappers/layout/Layout';
-import { StatusBar } from 'expo-status-bar';
+
+// Context
+import { useSession } from '@/context/ctx';
 
 export default function AppLayout() {
   const { session, isLoading } = useSession();

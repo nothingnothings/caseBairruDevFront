@@ -1,7 +1,7 @@
 // React-related
 import React from 'react';
 
-// Custom Components and styles
+// Custom Components
 import Form from '@/components/form/Form';
 import Layout from '@/components/common/wrappers/layout/Layout';
 

@@ -2,11 +2,10 @@
 import React from 'react';
 
 // RN-related
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 // Custom Components and Styles
 import { COLORS, SIZES } from '@/constants';
-import { StyleSheet } from 'react-native';
 
 type FormButtonProps = {
   disabled: boolean;

@@ -2,8 +2,7 @@
 import React from 'react';
 
 // RN-related
-import { SafeAreaView, StatusBar } from 'react-native';
-import { Platform } from 'react-native';
+import { SafeAreaView, StatusBar, Platform } from 'react-native';
 
 const SafeAreaViewAndroid = ({ children }: any) => {
   return (

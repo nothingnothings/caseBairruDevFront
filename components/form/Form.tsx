@@ -5,12 +5,14 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
-// Custom Components
+// Custom Components and styles
 import Title from '../common/title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';
 import { SIZES } from '@/constants';
+
+// Context
 import { useSession } from '@/context/ctx';
 
 type FormInputGroupProps = {

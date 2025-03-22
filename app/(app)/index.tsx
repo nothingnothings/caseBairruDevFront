@@ -1,7 +1,14 @@
+// React-related
 import React, { useState } from 'react';
+
+// RN-related
 import { Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import { COLORS, SIZES } from '@/constants';
+
+// Custom Components and styles
 import Layout from '@/components/common/wrappers/layout/Layout';
+import { COLORS, SIZES } from '@/constants';
+
+// Context
 import { useSession } from '@/context/ctx';
 
 const HomeScreen = () => {

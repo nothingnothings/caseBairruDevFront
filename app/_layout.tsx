@@ -8,9 +8,10 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import * as NavigationBar from 'expo-navigation-bar';
-
-// Custom Components and styles
 import { Provider } from 'react-native-paper';
+
+
+// Context
 import { SessionProvider } from '@/context/ctx';
 
 SplashScreen.preventAutoHideAsync();

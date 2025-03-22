@@ -2,7 +2,7 @@
 import { useRouter } from 'expo-router';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
-// Custom Components
+// Custom Components and styles
 import AnimationWrapper from '@/components/common/wrappers/animationWrapper/AnimationWrapper';
 import { COLORS } from '@/constants';
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   primaryButton: {
-    backgroundColor: COLORS.primary, // Primary: Strong vibrant button color
+    backgroundColor: COLORS.primary,
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 10,
