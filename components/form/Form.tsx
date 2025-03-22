@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 // Custom Components
-import Title from '../title/Title';
+import Title from '../common/title/Title';
 import FormLabel from './formLabel/FormLabel';
 import FormInput from './formInput/FormInput';
 import FormButton from './formButton/FormButton';

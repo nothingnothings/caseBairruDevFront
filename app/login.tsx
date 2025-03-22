@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-import { Alert } from 'react-native';
+import React from 'react';
 import Layout from '@/components/common/wrappers/layout/Layout';
-import Form from '@/components/common/form/Form';
-import { useSession } from '@/context/ctx';
-
-const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
+import Form from '@/components/form/Form';
 
 const LoginScreen = () => {
   return (
