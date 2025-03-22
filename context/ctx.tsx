@@ -1,17 +1,23 @@
+// React-related
 import {
   useContext,
   createContext,
   type PropsWithChildren,
-  useState,
   useEffect,
 } from 'react';
+
+// StorageState
 import { setStorageItemAsync, useStorageState } from './useStorageState';
+
+// Utility Functions
 import { login, register, updateUserName, validateSession } from '@/utils/auth';
+
+// Router-related
+import { router } from 'expo-router';
+
+// Types
 import { LoginData } from '@/types/auth/login';
 import { RegisterData } from '@/types/auth/register';
-
-// For Navigation
-import { router } from 'expo-router';
 import { UpdateUserData } from '@/types/auth/user';
 
 const AuthContext = createContext<{
@@ -58,9 +64,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     if (!isLoading && session) {
       validateSession(session).then((isValid) => {
-        console.log(session, "THE SESSION");
+        console.log(session, 'THE SESSION');
         if (!isValid) {
-          console.log(isValid, "IS VALID");
+          console.log(isValid, 'IS VALID');
           setSession(null);
           setUserName(null);
           setUserId(null);

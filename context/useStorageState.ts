@@ -1,4 +1,7 @@
+// React-related
 import { useEffect, useCallback, useReducer } from 'react';
+
+// RN-related
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 
