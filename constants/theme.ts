@@ -6,6 +6,8 @@ const COLORS = {
   // Grayscale / Neutral Colors
   gray: '#6c757d', // gray
   gray2: '#adb5bd', // Lighter gray for borders or less important elements
+  darkGray: '#6D6D6D',
+  lightGray: '#D3D3D3',
 
   // Background Colors
   white: '#ffffff', // Pure white

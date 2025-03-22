@@ -64,6 +64,8 @@ export default function Form({ isSignup }: FormProps) {
 
     const isValid = passwordRegex.test(password);
 
+    validateConfirmPassword(password);
+
     if (isValid) {
       setPasswordError('');
     } else {

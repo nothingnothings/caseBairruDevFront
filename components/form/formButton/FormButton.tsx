@@ -30,7 +30,11 @@ export default function FormButton({
       disabled={props.disabled}
       onPress={onPress}
     >
-      <Text style={styles.buttonText}>{isSignup ? 'Cadastrar' : 'Entrar'}</Text>
+      <Text
+        style={props.disabled ? styles.buttonTextDisabled : styles.buttonText}
+      >
+        {isSignup ? 'Cadastrar' : 'Entrar'}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -47,10 +51,15 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
   },
   buttonDisabled: {
-    backgroundColor: COLORS.lightDark,
+    backgroundColor: COLORS.lightGray,
   },
   buttonText: {
     color: '#ffffff',
+    fontSize: 16,
+    fontFamily: 'DMRegular',
+  },
+  buttonTextDisabled: {
+    color: COLORS.darkGray,
     fontSize: 16,
     fontFamily: 'DMRegular',
   },
