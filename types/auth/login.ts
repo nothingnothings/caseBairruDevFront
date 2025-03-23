@@ -3,7 +3,10 @@ export interface LoginData {
   password: string;
 }
 
-export type LoginFunction = (params: LoginData) => Promise<{
+export type LoginFunction = (
+  params: LoginData,
+  setError: (message: string | null) => void
+) => Promise<{
   sessionData: string | null;
   userName: string | null;
   userId: string | null;

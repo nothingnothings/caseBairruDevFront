@@ -4,6 +4,8 @@ import {
   createContext,
   type PropsWithChildren,
   useEffect,
+  useRef,
+  useState,
 } from 'react';
 
 // StorageState
@@ -19,6 +21,7 @@ import { router } from 'expo-router';
 import { LoginData } from '@/types/auth/login';
 import { RegisterData } from '@/types/auth/register';
 import { UpdateUserData } from '@/types/auth/user';
+import CustomAlert from '@/components/common/CustomAlert/CustomAlert';
 
 const AuthContext = createContext<{
   signIn: (params: LoginData) => void;
@@ -31,6 +34,8 @@ const AuthContext = createContext<{
   setUserName: (userName: string | null) => void;
   setUserId: (userId: string | null) => void;
   isLoading: boolean;
+  errorMessage: string | null;
+  setError: (message: string | null) => void; // New function to set error message
 }>({
   signIn: (params: LoginData) => null,
   signUp: (params: RegisterData) => null,
@@ -42,6 +47,8 @@ const AuthContext = createContext<{
   setUserName: () => {},
   setUserId: () => {},
   isLoading: false,
+  errorMessage: null,
+  setError: (message: string | null) => null, // New function to set error message
 });
 
 // This hook can be used to access the user info.
@@ -60,6 +67,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState('session');
   const [[, userName], setUserName] = useStorageState('userName');
   const [[, userId], setUserId] = useStorageState('userId');
+
+  // Error Handling
+  const [errorMessage, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isLoading && session) {
@@ -83,6 +93,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   };
 
   const signOut = async () => {
+    // Clear state data
     setSession(null);
     setUserName(null);
     setUserId(null);
@@ -122,26 +133,30 @@ export function SessionProvider({ children }: PropsWithChildren) {
     <AuthContext.Provider
       value={{
         signIn: async (params: LoginData) => {
-          const results = await login(params);
+          const results = await login(params, setError);
 
-          // Save user data in state
-          setData(results);
+          if (results.sessionData) {
+            // Save user data in state
+            setData(results);
 
-          // Save user data in persistent storage
-          await setStorageData(results);
+            // Save user data persistently
+            await setStorageData(results);
+          }
         },
 
         signUp: async (params: RegisterData) => {
-          const results = await register(params);
+          const results = await register(params, setError);
 
-          // Save user data in state
-          setData(results);
+          if (results.sessionData) {
+            // Save user data in state
+            setData(results);
 
-          // Save user data persistently:
-          await setStorageData(results);
+            // Save user data persistently
+            await setStorageData(results);
+          }
         },
         changeName: async (params: UpdateUserData) => {
-          const user = await updateUserName(params, session);
+          const user = await updateUserName(params, session, setError);
 
           if (user) {
             // Update user name in state
@@ -162,6 +177,8 @@ export function SessionProvider({ children }: PropsWithChildren) {
         setUserId,
         session,
         isLoading,
+        errorMessage,
+        setError,
       }}
     >
       {children}

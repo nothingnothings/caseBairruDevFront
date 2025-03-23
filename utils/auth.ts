@@ -1,7 +1,6 @@
 import { RegisterData, RegisterFunction } from '@/types/auth/register';
 import { LoginData, LoginFunction } from '@/types/auth/login';
-import { Alert } from 'react-native';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { UpdateUserData, UserData } from '@/types/auth/user';
 
 const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
@@ -18,13 +17,14 @@ export const validateSession = async (
 
     return response.data.isValid;
   } catch (error) {
-    console.error('Session validation failed:', error);
+    console.error('A validação da sessão falhou: ', error);
     return false; // Session is invalid
   }
 };
 
 export const register: RegisterFunction = async (
-  params: RegisterData
+  params: RegisterData,
+  setError: (message: string | null) => void
 ): Promise<{
   sessionData: string | null;
   userName: string;
@@ -39,7 +39,19 @@ export const register: RegisterFunction = async (
     });
 
     if (response.status !== 200) {
-      throw new Error('Cadastro falhou');
+      // Mensagem genérica de erro:
+      console.log(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
+        response.data
+      );
+      setError(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
+      );
+      return {
+        sessionData: null,
+        userName: '',
+        userId: null,
+      };
     }
 
     return {
@@ -47,8 +59,12 @@ export const register: RegisterFunction = async (
       userName: response.data.user.name,
       userId: response.data.user.id,
     };
-  } catch (error) {
-    console.error('Cadastro falhou:', error);
+  } catch (error: any) {
+    if (error.response.data.message) {
+      setError(error.response.data.message);
+    } else {
+      setError('Cadastro falhou: ' + error);
+    }
     return {
       sessionData: null,
       userName: '',
@@ -58,7 +74,8 @@ export const register: RegisterFunction = async (
 };
 
 export const login: LoginFunction = async (
-  params: LoginData
+  params: LoginData,
+  setError: (message: string | null) => void
 ): Promise<{
   sessionData: string | null;
   userName: string;
@@ -71,7 +88,19 @@ export const login: LoginFunction = async (
     });
 
     if (response.status !== 200) {
-      throw new Error('Login falhou');
+      // Mensagem genérica de erro:
+      console.log(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
+        response.data
+      );
+      setError(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
+      );
+      return {
+        sessionData: null,
+        userName: '',
+        userId: null,
+      };
     }
 
     return {
@@ -79,8 +108,12 @@ export const login: LoginFunction = async (
       userName: response.data.user.name,
       userId: response.data.user.id,
     };
-  } catch (error) {
-    console.error('Login falhou:', error);
+  } catch (error: any) {
+    if (error.response.data.message) {
+      setError(error.response.data.message);
+    } else {
+      setError('Login falhou: ' + error);
+    }
     return {
       sessionData: null,
       userName: '',
@@ -91,7 +124,8 @@ export const login: LoginFunction = async (
 
 export const fetchUserName = async (
   session: string | null,
-  userId: string | null
+  userId: string | null,
+  setError: (message: string | null) => void
 ): Promise<string | null> => {
   try {
     const response = await axios.get(`${apiUrl}/auth/user/${userId}`, {
@@ -99,19 +133,31 @@ export const fetchUserName = async (
     });
 
     if (response.status !== 200) {
-      throw new Error('Não foi possível obter o nome do usuário.');
+      // Mensagem genérica de erro:
+      console.log(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
+        response.data
+      );
+      setError(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
+      );
     }
 
     return response.data.name;
-  } catch (error) {
-    console.error('Não foi possível obter o nome do usuário:', error);
+  } catch (error: any) {
+    if (error.response.data.message) {
+      setError(error.response.data.message);
+    } else {
+      setError('Login falhou: ' + error);
+    }
     return null;
   }
 };
 
 export const updateUserName = async (
   params: UpdateUserData,
-  session: string | null
+  session: string | null,
+  setError: (message: string | null) => void
 ): Promise<UserData | null> => {
   try {
     const response = await axios.put(
@@ -128,12 +174,24 @@ export const updateUserName = async (
     );
 
     if (response.status !== 200) {
-      throw new Error('Alteração de nome falhou.');
+      // Mensagem genérica de erro:
+      console.log(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
+        response.data
+      );
+      setError(
+        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
+      );
+      return null;
     }
 
     return response.data;
-  } catch (error) {
-    console.error('Alteração de nome falhou:', error);
+  } catch (error: any) {
+    if (error.response.data.message) {
+      setError(error.response.data.message);
+    } else {
+      setError('Alteração de nome falhou: ' + error);
+    }
     return null;
   }
 };

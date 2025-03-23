@@ -16,11 +16,12 @@ const HomeScreen = () => {
   const [newName, setNewName] = useState('');
   const [currentName, setCurrentName] = useState('');
 
-  const { userName, session, userId, signOut, changeName } = useSession();
+  const { userName, session, userId, signOut, changeName, setError } =
+    useSession();
 
   useEffect(() => {
     if (session) {
-      fetchUserName(session, userId).then((name) => {
+      fetchUserName(session, userId, setError).then((name) => {
         if (name) {
           setCurrentName(name);
         } else {
