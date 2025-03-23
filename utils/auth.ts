@@ -1,6 +1,6 @@
 import { RegisterData, RegisterFunction } from '@/types/auth/register';
 import { LoginData, LoginFunction } from '@/types/auth/login';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { UpdateUserData, UserData } from '@/types/auth/user';
 
 const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
