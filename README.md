@@ -137,8 +137,6 @@ The package.json file used in the project:
 
 
 ```
-
-
 {
   "name": "my_project",
   "main": "expo-router/entry",
@@ -212,8 +210,6 @@ The package.json file used in the project:
   },
   "private": true
 }
-
-
 ```
 
 ## Setup 
