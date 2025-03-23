@@ -4,7 +4,6 @@ import {
   createContext,
   type PropsWithChildren,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 
@@ -21,7 +20,6 @@ import { router } from 'expo-router';
 import { LoginData } from '@/types/auth/login';
 import { RegisterData } from '@/types/auth/register';
 import { UpdateUserData } from '@/types/auth/user';
-import CustomAlert from '@/components/common/CustomAlert/CustomAlert';
 
 const AuthContext = createContext<{
   signIn: (params: LoginData) => void;
