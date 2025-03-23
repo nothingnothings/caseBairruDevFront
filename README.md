@@ -52,6 +52,7 @@ The frontend project's directory structure:
 +---.expo
 |   .gitignore
 |   app.json
+|   BairruDev.postman_collection
 |   declarations.d.ts
 |   expo-env.d.ts
 +---node_modules
@@ -91,14 +92,14 @@ The frontend project's directory structure:
 |   |   |       Title.tsx
 |   |   |
 |   |   \---wrappers
-|   |       +---animationWrapper
-|   |       |       AnimationWrapper.tsx
-|   |       |
-|   |       +---layout
-|   |       |       Layout.tsx
-|   |       |
-|   |       \---safeAreaViewAndroid
-|   |               SafeAreaViewAndroid.tsx
+|   |       \---layout
+|   |           |   Layout.tsx
+|   |           |
+|   |           \---animationWrapper
+|   |               |   AnimationWrapper.tsx
+|   |               |
+|   |               \---safeAreaViewAndroid
+|   |                       SafeAreaViewAndroid.tsx
 |   |
 |   +---form
 |   |   |   Form.tsx
@@ -267,3 +268,8 @@ Optionally, if you want to test the project in mobile devices, locally:
 - **Protected Routes**: Routes not related to registration/login actions are protected by middleware that checks if the user is authenticated before granting access.
 - **Environment Variable Configuration** - Secure secrets management using `.env` files.
 
+## Additional Notes
+
+- **Ensure Docker is installed and running** before attempting to start the database.
+- **Environment variables must be configured correctly** for the application to function properly.
+- **If you wish to test the backend without using the frontend, you can import the included `BairruDev.postman_collection` into Postman**; you only need to fire the "Register" route, copy the `token` property and then include it in the "Authorization" header of the other requests, as a "Bearer <token>" value.
