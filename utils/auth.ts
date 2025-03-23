@@ -16,7 +16,7 @@ export const validateSession = async (
     });
 
     return response.data.isValid;
-  } catch (error) {
+  } catch (error: any) {
     console.error('A validação da sessão falhou: ', error);
     return false; // Session is invalid
   }
@@ -60,7 +60,9 @@ export const register: RegisterFunction = async (
       userId: response.data.user.id,
     };
   } catch (error: any) {
-    if (error.response.data.message) {
+    if (error.code === 'ERR_NETWORK') {
+      setError('Verifique sua conexão com o servidor e tente novamente.');
+    } else if (error.response.data.message) {
       setError(error.response.data.message);
     } else {
       setError('Cadastro falhou: ' + error);
@@ -109,7 +111,14 @@ export const login: LoginFunction = async (
       userId: response.data.user.id,
     };
   } catch (error: any) {
-    if (error.response.data.message) {
+    if (error.code === 'ERR_NETWORK') {
+      setError('Verifique sua conexão com o servidor e tente novamente.');
+      return {
+        sessionData: null,
+        userName: '',
+        userId: null,
+      };
+    } else if (error.response.data.message) {
       setError(error.response.data.message);
     } else {
       setError('Login falhou: ' + error);
@@ -145,7 +154,10 @@ export const fetchUserName = async (
 
     return response.data.name;
   } catch (error: any) {
-    if (error.response.data.message) {
+    if (error.code === 'ERR_NETWORK') {
+      setError('Verifique sua conexão com o servidor e tente novamente.');
+      return null;
+    } else if (error.response.data.message) {
       setError(error.response.data.message);
     } else {
       setError('A busca pelo usuário falhou: ' + error);
@@ -187,7 +199,10 @@ export const updateUserName = async (
 
     return response.data;
   } catch (error: any) {
-    if (error.response.data.message) {
+    if (error.code === 'ERR_NETWORK') {
+      setError('Verifique sua conexão com o servidor e tente novamente.');
+      return null;
+    } else if (error.response.data.message) {
       setError(error.response.data.message);
     } else {
       setError('Alteração de nome falhou: ' + error);
