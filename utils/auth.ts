@@ -148,7 +148,7 @@ export const fetchUserName = async (
     if (error.response.data.message) {
       setError(error.response.data.message);
     } else {
-      setError('Login falhou: ' + error);
+      setError('A busca pelo usuário falhou: ' + error);
     }
     return null;
   }
