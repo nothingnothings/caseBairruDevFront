@@ -1,7 +1,7 @@
 
 <h1 align="center">Case BairruDev Frontend</h1>
 <p align="center">
-  <img src="repo-screenshots/frontendGeneric.png" alt="Frontend-logo" width="120px" height="120px"/>
+  <img src="repo-screenshots/frontendGeneric.svg" alt="Frontend-logo" width="120px" height="120px"/>
   <br>
   <i>
   This application is the Frontend portion of the BairruDev entry test App, built with
