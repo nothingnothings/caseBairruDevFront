@@ -2,7 +2,7 @@
 import * as Animatable from 'react-native-animatable';
 
 // Custom Components
-import SafeAreaViewAndroid from '@/components/common/wrappers/safeAreaViewAndroid/SafeAreaViewAndroid';
+import SafeAreaViewAndroid from '@/components/common/wrappers/layout/animationWrapper/safeAreaViewAndroid/SafeAreaViewAndroid';
 
 type AnimationWrapperProps = {
   children: React.ReactNode;

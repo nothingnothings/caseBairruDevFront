@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
 // Custom Components and styles
-import AnimationWrapper from '@/components/common/wrappers/animationWrapper/AnimationWrapper';
+import AnimationWrapper from '@/components/common/wrappers/layout/animationWrapper/AnimationWrapper';
 import { COLORS } from '@/constants';
 
 export default function NotFoundScreen() {
