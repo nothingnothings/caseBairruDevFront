@@ -234,9 +234,9 @@ EXPO_PUBLIC_BACKEND_API="http://localhost:3000"
 
 Optionally, if you want to test the project in mobile devices, locally:
 
-8. Get the IP address of the device running the backend: Run `ipconfig` (windows), then write down the IPv4 address of the machine.
-9. Set device's local IP address as the value of the `EXPO_PUBLIC_BACKEND_API` variable in the `.env` file: the line will look like `EXPO_PUBLIC_BACKEND_API="http://192.168.0.137:3001"`.
-10. Restart the app, with `npm start`.
+6. Get the IP address of the device running the backend: Run `ipconfig` (windows), then write down the IPv4 address of the machine.
+7. Set device's local IP address as the value of the `EXPO_PUBLIC_BACKEND_API` variable in the `.env` file: the line will look like `EXPO_PUBLIC_BACKEND_API="http://192.168.0.137:3001"`.
+8. Restart the app, with `npm start`.
 
 ## Endpoints:
 
