@@ -14,6 +14,17 @@
 
 This guide provides instructions for setting up and running the frontend of the BairruDev entry test case. This frontend was created with React Native, and was written using Typescript. This frontend is meant to be used with the backend seen in the [caseBairruDevBack](https://github.com/nothingnothings/caseBairruDevBack) repository.
 
+![Login](repo-screenshots/Login.png)
+
+![Register](repo-screenshots/Register.png)
+
+![Dashboard-1](repo-screenshots/Dashboard-1.png)
+
+![Dashboard-2](repo-screenshots/Dashboard-2.png)
+
+![Dashboard-3](repo-screenshots/Dashboard-3.png)
+
+
 
 ## Technologies 
  
