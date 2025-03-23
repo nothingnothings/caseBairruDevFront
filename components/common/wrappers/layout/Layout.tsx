@@ -7,7 +7,7 @@ import { View, StatusBar, StyleSheet } from 'react-native';
 // Custom Components
 import AnimationWrapper from '@/components/common/wrappers/layout/animationWrapper/AnimationWrapper';
 import { useSession } from '@/context/ctx';
-import CustomAlert from '../../CustomAlert/CustomAlert';
+import CustomAlert from '@/components/common/customAlert/CustomAlert';
 
 type LayoutProps = {
   children: React.ReactNode;
