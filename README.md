@@ -263,6 +263,7 @@ Optionally, if you want to test the project in mobile devices, locally:
 - **User Authentication, using JWT** - Secure login and session management.
 - **Navigation and Routing, with Expo**
 - **TailwindCSS** - for minor styling and prototyping.
+- React Native Paper - For UI components and consistent design.
 - **React Native Reanimated** - for smooth transition animations.
 - **Backend Node API Integration** - The app communicates with the Fastify backend using `axios` to send and receive data, including user authentication and user data (the user's name property).
 - **Protected Routes**: Routes not related to registration/login actions are protected by middleware that checks if the user is authenticated before granting access.
