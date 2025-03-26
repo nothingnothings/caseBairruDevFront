@@ -37,7 +37,7 @@ This guide provides instructions for setting up and running the frontend of the 
   - Secure Store – Ensures sensitive information is securely stored on the device
   - Axios – Handles API requests to the backend
   - Tailwind CSS (via `twrnc`) – Enables utility-first styling for a responsive UI
-  - React Native Paper - For UI components and consistent design
+  - React Native Paper - For UI component `ActivityIndicator` and the custom component `CustomAlert`
   - `react-native-reanimated` – Provides smooth animations
 
 
