@@ -1,6 +1,6 @@
 import { RegisterData, RegisterFunction } from '@/types/auth/register';
 import { LoginData, LoginFunction } from '@/types/auth/login';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { UpdateUserData, UserData } from '@/types/auth/user';
 
 const apiUrl = process.env.EXPO_PUBLIC_BACKEND_API;
@@ -40,13 +40,8 @@ export const register: RegisterFunction = async (
 
     if (response.status !== 200) {
       // Mensagem genérica de erro:
-      console.log(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
-        response.data
-      );
-      setError(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
-      );
+      genericErrorHandler(setError, response);
+
       return {
         sessionData: null,
         userName: '',
@@ -91,13 +86,8 @@ export const login: LoginFunction = async (
 
     if (response.status !== 200) {
       // Mensagem genérica de erro:
-      console.log(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
-        response.data
-      );
-      setError(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
-      );
+      genericErrorHandler(setError, response);
+
       return {
         sessionData: null,
         userName: '',
@@ -143,13 +133,9 @@ export const fetchUserName = async (
 
     if (response.status !== 200) {
       // Mensagem genérica de erro:
-      console.log(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
-        response.data
-      );
-      setError(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
-      );
+      genericErrorHandler(setError, response);
+
+      return null;
     }
 
     return response.data.name;
@@ -187,13 +173,8 @@ export const updateUserName = async (
 
     if (response.status !== 200) {
       // Mensagem genérica de erro:
-      console.log(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
-        response.data
-      );
-      setError(
-        'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
-      );
+      genericErrorHandler(setError, response);
+
       return null;
     }
 
@@ -209,4 +190,17 @@ export const updateUserName = async (
     }
     return null;
   }
+};
+
+const genericErrorHandler = (
+  setError: (message: string | null) => void,
+  response: AxiosResponse
+) => {
+  console.log(
+    'Houve um problema ao processar sua requisição. Por favor, tente novamente.',
+    response.data
+  );
+  setError(
+    'Houve um problema ao processar sua requisição. Por favor, tente novamente.'
+  );
 };
