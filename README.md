@@ -32,11 +32,12 @@ This guide provides instructions for setting up and running the frontend of the 
 
   - Node Package Manager (for bootstrapping and managing the Node backend app)
   - TypeScript
-  - React Native – The core framework for building cross-platform mobile apps.
-  - Expo – Framework and platform for universal React applications, simplifying development and deployment.
-  - Secure Store – Ensures sensitive information is securely stored on the device.
+  - React Native – The core framework for building cross-platform mobile apps
+  - Expo – Framework and platform for universal React applications, simplifying development and deployment
+  - Secure Store – Ensures sensitive information is securely stored on the device
   - Axios – Handles API requests to the backend
-  - Tailwind CSS (via `twrnc`) – Enables utility-first styling for a responsive UI.
+  - Tailwind CSS (via `twrnc`) – Enables utility-first styling for a responsive UI
+  - React Native Paper - For UI components and consistent design
   - `react-native-reanimated` – Provides smooth animations
 
 
@@ -263,7 +264,6 @@ Optionally, if you want to test the project in mobile devices, locally:
 - **User Authentication, using JWT** - Secure login and session management.
 - **Navigation and Routing, with Expo**
 - **TailwindCSS** - for minor styling and prototyping.
-- React Native Paper - For UI components and consistent design.
 - **React Native Reanimated** - for smooth transition animations.
 - **Backend Node API Integration** - The app communicates with the Fastify backend using `axios` to send and receive data, including user authentication and user data (the user's name property).
 - **Protected Routes**: Routes not related to registration/login actions are protected by middleware that checks if the user is authenticated before granting access.
