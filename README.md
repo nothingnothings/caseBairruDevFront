@@ -235,7 +235,7 @@ To use this project, follow these steps:
 
 ```
 EXPO_PUBLIC_APP_URL="http://localhost:8081"
-EXPO_PUBLIC_BACKEND_API="http://localhost:3000"
+EXPO_PUBLIC_BACKEND_API="http://localhost:3001"
 ```
 3. Install `npm` Dependencies: Run `npm install`
 4. Start the frontend app: Run `npm start`
