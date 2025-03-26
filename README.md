@@ -36,7 +36,7 @@ This guide provides instructions for setting up and running the frontend of the 
   - Expo – Framework and platform for universal React applications, simplifying development and deployment
   - Secure Store – Ensures sensitive information is securely stored on the device
   - Axios – Handles API requests to the backend
-  - Tailwind CSS (via `twrnc`) – Enables utility-first styling for a responsive UI
+  - Tailwind CSS (via `twrnc`) – Enables utility-first styling for a responsive UI and fast prototyping
   - React Native Paper - For UI component `ActivityIndicator` and the custom component `CustomAlert`
   - `react-native-reanimated` – Provides smooth animations
 
