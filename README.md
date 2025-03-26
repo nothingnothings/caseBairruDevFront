@@ -224,16 +224,16 @@ The package.json file used in the project:
 
 To use this project, follow these steps:
 
-1. Clone the Repository: Run `git clone` to clone the project into your local Git repository
+1. Clone the Repository: Run `git clone` to clone the project into your local Git repository.
 2. Configure the Environment Variables: Create a `.env` file at the root of the project and add the following values, as seen in the `.env.example` file:
 
 ```
 EXPO_PUBLIC_APP_URL="http://localhost:8081"
 EXPO_PUBLIC_BACKEND_API="http://localhost:3001"
 ```
-3. Install `npm` Dependencies: Run `npm install`
-4. Start the frontend app: Run `npm start`
-5. Pair the running frontend app with the backend seen in the [caseBairruDevBack Repo](https://github.com/nothingnothings/caseBairruDevBack)
+3. Install `npm` Dependencies: Run `npm install`.
+4. Start the frontend app: Run `npm start`.
+5. Pair the running frontend app with the backend seen in the [caseBairruDevBack](https://github.com/nothingnothings/caseBairruDevBack) Repo
 
 Optionally, if you want to test the project in mobile devices, locally:
 
